@@ -3,218 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Configuration - MaisonConnecté</title>
+<title>⚙️ Configuration – MaisonConnecté</title>
 
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
 
-body {
-    font-family: Arial, sans-serif;
-    background: #0b0f14;
-    color: white;
+body{
+    background:#000;
+    color:#fff;
 }
 
 /* HEADER */
-header {
-    background: linear-gradient(135deg, #0b0f14, #0f1a24);
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #00ff88;
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    padding:15px;
+    background:#000;
+    border-bottom:2px solid #00ff88;
 }
 
-#burger {
-    font-size: 28px;
-    cursor: pointer;
+.logo{
+    font-size:26px;
+    font-weight:bold;
+    color:white;
 }
 
-#title {
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    flex: 1;
+.burger{
+    position:absolute;
+    left:15px;
+    font-size:28px;
+    cursor:pointer;
+    color:white;
 }
 
-#menu {
-    position: fixed;
-    top: 0;
-    left: -260px;
-    width: 250px;
-    height: 100%;
-    background: #02060c;
-    padding: 25px;
-    transition: 0.3s;
-    z-index: 10;
+/* MENU */
+.menu{
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:250px;
+    height:100%;
+    background:#02060c;
+    padding:25px;
+    transition:0.3s;
+    z-index:1000;
 }
 
-#menu a {
-    display: block;
-    padding: 15px 0;
-    color: #00ff88;
-    text-decoration: none;
-    font-size: 18px;
-    border-bottom: 1px solid #00ff8822;
+.menu a{
+    display:block;
+    padding:15px 0;
+    color:#00ff88;
+    text-decoration:none;
+    font-size:18px;
+    border-bottom:1px solid #00ff8822;
 }
 
-/* MAIN */
-main {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
+/* CONTENU */
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:30px 20px;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 26px;
-    color: #00ff88;
+h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#00ff88;
 }
 
-.config-box {
-    background: #02060c;
-    border: 1px solid #00ff88;
-    border-radius: 12px;
-    padding: 25px;
+.section{
+    background:rgba(0,255,136,0.05);
+    border:1px solid rgba(0,255,136,0.25);
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:25px;
 }
 
-.config-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 15px 0;
-    gap: 10px;
+.section h3{
+    margin-bottom:15px;
+    color:#00ff88;
 }
 
-select {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: none;
-    background: #0f1a24;
-    color: white;
+label{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
 }
 
-/* PRIX */
-#total {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #00ff88;
-    text-align: center;
+input[type=number]{
+    width:70px;
+    padding:6px;
+    border-radius:6px;
+    border:none;
+    text-align:center;
 }
 
-#price {
-    font-size: 34px;
-    color: #00ff88;
-    margin-top: 10px;
+select{
+    width:100%;
+    padding:8px;
+    border-radius:6px;
 }
 
-#pack {
-    margin-top: 5px;
-    font-size: 18px;
-    color: #cccccc;
+/* TOTAL */
+.total{
+    text-align:center;
+    font-size:2em;
+    margin-top:25px;
+    color:#00ff88;
 }
 
 /* FOOTER */
-footer {
-    margin-top: 50px;
-    text-align: center;
-    padding: 15px;
-    font-size: 14px;
-    color: #777;
+footer{
+    text-align:center;
+    padding:20px;
+    color:#00ff88;
+    border-top:2px solid #00ff88;
+    margin-top:40px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div id="burger" onclick="toggleMenu()">☰</div>
-    <div id="title">🏠 MaisonConnecté</div>
-    <div style="width:28px;"></div>
+<header class="header">
+    <div class="burger" onclick="toggleMenu()">☰</div>
+    <div class="logo">🏠 MaisonConnecté</div>
 </header>
 
-<nav id="menu">
+<nav id="menu" class="menu">
     <a href="index.html">Accueil</a>
     <a href="domotique.html">Domotique</a>
     <a href="securite.html">Sécurité</a>
     <a href="config.html">Configuration</a>
 </nav>
 
-<main>
+<div class="container">
 
-<h2>Configuration personnalisée</h2>
+<h2>⚙️ Configurez votre installation</h2>
 
-<div class="config-box">
+<div class="section">
+<h3>🪟 Modules volets</h3>
+<label>Nombre de modules
+<input type="number" id="volets" min="0" value="0" onchange="calcul()">
+</label>
+<small>Prix dégressif automatique</small>
+</div>
 
-    <div class="config-item">
-        <span>Nombre de modules volets</span>
-        <select id="volets" onchange="calculate()">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-    </div>
+<div class="section">
+<h3>🔐 Sécurité</h3>
+<label>Pack sécurité
+<select id="securite" onchange="calcul()">
+<option value="0">Aucun</option>
+<option value="149">Pack Mini – 149€</option>
+<option value="249">Pack S – 249€</option>
+<option value="349">Pack M – 349€</option>
+<option value="449">Pack L – 449€</option>
+</select>
+</label>
+</div>
 
-    <div class="config-item">
-        <span>Capteurs portes / fenêtres</span>
-        <select id="capteurs" onchange="calculate()">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-    </div>
+<div class="section">
+<h3>📷 Caméras</h3>
+<label>Nombre de caméras
+<input type="number" id="cameras" min="0" value="0" onchange="calcul()">
+</label>
+</div>
 
-    <div class="config-item">
-        <span>Caméras fixes intérieures</span>
-        <select id="cameras" onchange="calculate()">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </div>
+<div class="section">
+<h3>📱 Option tablette murale</h3>
+<label>Ajouter une tablette (+129€)
+<select id="tablette" onchange="calcul()">
+<option value="0">Non</option>
+<option value="129">Oui</option>
+</select>
+</label>
+</div>
 
-    <div class="config-item">
-        <span>Tablette murale centrale</span>
-        <select id="tablet" onchange="calculate()">
-            <option value="0">Non</option>
-            <option value="1">Oui</option>
-        </select>
-    </div>
-
-    <div id="total">
-        <div id="price">0 €</div>
-        <div id="pack"></div>
-    </div>
+<div class="total">
+Total : <span id="total">0</span> €
+</div>
 
 </div>
 
-</main>
-
 <footer>
-MaisonConnecté — Système évolutif sans abonnement
+&copy; 2026 🏠 MaisonConnecté
 </footer>
 
 <script>
@@ -223,47 +198,22 @@ function toggleMenu(){
     menu.style.left = (menu.style.left === "0px") ? "-260px" : "0px";
 }
 
-function calculate(){
-    let volets = parseInt(document.getElementById("volets").value);
-    let capteurs = parseInt(document.getElementById("capteurs").value);
-    let cameras = parseInt(document.getElementById("cameras").value);
-    let tablet = parseInt(document.getElementById("tablet").value);
+function prixVolets(qte){
+    if(qte <= 1) return 89;
+    if(qte <= 3) return qte * 79;
+    if(qte <= 6) return qte * 69;
+    return qte * 59;
+}
 
-    let priceVolet = 89;
-    let priceCapteur = 25;
-    let priceCamera = 59;
-    let priceTablet = 199;
+function calcul(){
+    let volets = parseInt(document.getElementById("volets").value) || 0;
+    let securite = parseInt(document.getElementById("securite").value) || 0;
+    let cameras = parseInt(document.getElementById("cameras").value) || 0;
+    let tablette = parseInt(document.getElementById("tablette").value) || 0;
 
-    let total = 0;
+    let total = prixVolets(volets) + securite + (cameras * 129) + tablette;
 
-    if(volets > 0){
-        if(volets <= 2) total += volets * priceVolet;
-        else if(volets <= 4) total += volets * 79;
-        else if(volets <= 8) total += volets * 69;
-        else total += volets * 59;
-    }
-
-    if(capteurs > 0){
-        if(capteurs <= 4) total += capteurs * priceCapteur;
-        else if(capteurs <= 8) total += capteurs * 22;
-        else total += capteurs * 19;
-    }
-
-    if(cameras > 0){
-        total += cameras * priceCamera;
-    }
-
-    if(tablet === 1){
-        total += priceTablet;
-    }
-
-    let pack = "";
-    if(total < 300) pack = "Configuration Essentielle";
-    else if(total < 700) pack = "Pack Avancé";
-    else pack = "Pack Premium";
-
-    document.getElementById("price").innerText = total + " €";
-    document.getElementById("pack").innerText = pack;
+    document.getElementById("total").innerText = total;
 }
 </script>
 
