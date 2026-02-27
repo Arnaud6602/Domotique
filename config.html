@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠MaisonConnecté - Configuration</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family: Arial, sans-serif; background:#000; color:#fff; line-height:1.5;}
+header{display:flex; justify-content:space-between; align-items:center; background:#000; padding:15px 20px; position:sticky; top:0; z-index:1000; border-bottom:2px solid #00ff9c;}
+header h1{font-size:2.2em; color:#fff; text-align:center; width:100%;}
+.burger{display:flex; flex-direction:column; justify-content:space-between; width:25px; height:18px; cursor:pointer;}
+.burger div{height:3px; background:#00ff9c; border-radius:2px;}
+nav{display:none; flex-direction:column; background:#000; position:absolute; top:60px; right:20px; border-radius:8px; overflow:hidden; width:180px;}
+nav a{color:#00ff9c; padding:12px 15px; text-decoration:none; border-bottom:1px solid rgba(0,255,150,0.2);}
+nav a:last-child{border-bottom:none;}
+nav a:hover{background:#0f2650;}
+nav.active{display:flex;}
+.container{max-width:900px; margin:auto; padding:20px;}
+h2{text-align:center; margin-bottom:30px; color:#00ff9c;}
+form{display:flex; flex-direction:column; gap:20px; margin-bottom:30px;}
+label{font-size:1.1em; color:#fff;}
+input, select{padding:10px; border-radius:8px; border:none; font-size:1em;}
+button{padding:15px; background:#00ff9c; color:#000; border:none; border-radius:10px; cursor:pointer; font-weight:bold;}
+button:hover{transform:scale(1.05);}
+.result{margin-top:30px; font-size:1.2em; color:#00ff9c;}
+</style>
+</head>
+<body>
 
+<header>
+  <h1>🏠MaisonConnecté</h1>
+  <div class="burger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
+  <nav id="menu">
+    <a href="index.html">Accueil</a>
+    <a href="domotique.html">Domotique</a>
+    <a href="securite.html">Sécurité</a>
+    <a href="config.html">Configuration</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h2>⚙️ Configuration de votre installation</h2>
+  <form id="configForm">
+    <label>Nombre de volets :</label>
+    <input type="number" id="volets" value="1" min="0">
+    <label>Nombre de capteurs portes/fenêtres (0-12) :</label>
+    <input type="number" id="capteurs" value="4" min="0" max="12">
+    <label>Nombre de caméras fixes intérieures :</label>
+    <input type="number" id="cameras" value="1" min="0">
+    <button type="button" onclick="calculerPrix()">💰 Calculer le prix</button>
+  </form>
+  <div class="result" id="result"></div>
+</div>
+
+<footer>
+  &copy; 2026 🏠MaisonConnecté | <a href="contact.html">Contactez-nous</a>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('menu').classList.toggle('active');}
+function calculerPrix(){
+  const volets = parseInt(document.getElementById('volets').value)||0;
+  const capteurs = parseInt(document.getElementById('capteurs').value)||0;
+  const cameras = parseInt(document.getElementById('cameras').value)||0;
+
+  const prixVolet = 49; // par module
+  const prixCapteur = 15; // par capteur
+  const prixCamera = 79; // par caméra
+  const prixBase = 99; // installation + passerelle
+
+  const total = (volets*prixVolet) + (capteurs*prixCapteur) + (cameras*prixCamera) + prixBase;
+
+  document.getElementById('result').innerHTML = `💰 Prix estimé : ${total} €`;
+}
+</script>
+
+</body>
+</html>
