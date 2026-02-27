@@ -5,65 +5,85 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>⚙️ MaisonConnecté - Configuration</title>
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #000;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
+/* Reset */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {font-family: Arial, sans-serif; background:#000; color:#fff; line-height:1.5;}
 
+/* Header */
 header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   background:#000;
-  padding:15px;
-  text-align:center;
+  padding:15px 20px;
+  position:sticky;
+  top:0;
+  z-index:1000;
   border-bottom:2px solid #00ff9c;
-  font-size:18px;
 }
-
-header a{
-  color:#00ff9c;
-  text-decoration:none;
-  margin: 0 12px;
-  font-weight:bold;
-}
-
-header a:hover{
+header h1{
+  font-size:2.2em; 
   color:#fff;
-}
-
-.container{
-  max-width: 900px;
-  margin:auto;
-  padding: 20px;
-}
-
-h2{
   text-align:center;
-  color:#00ff9c;
-  margin-bottom:20px;
+  width:100%;
+}
+.burger{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  width:25px;
+  height:18px;
+  cursor:pointer;
+}
+.burger div{
+  height:3px;
+  background:#00ff9c;
+  border-radius:2px;
 }
 
+/* Menu */
+nav{
+  display:none;
+  flex-direction:column;
+  background:#000;
+  position:absolute;
+  top:60px;
+  right:20px;
+  border-radius:8px;
+  overflow:hidden;
+  width:180px;
+}
+nav a{
+  color:#00ff9c;
+  padding:12px 15px;
+  text-decoration:none;
+  border-bottom:1px solid rgba(0,255,150,0.2);
+}
+nav a:last-child{border-bottom:none;}
+nav a:hover{background:#0f2650;}
+nav.active{display:flex;}
+
+/* Contenu */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+h2{text-align:center; color:#00ff9c; margin-bottom:20px;}
 .section{
-  background:rgba(0,255,150,0.05);
+  background: rgba(0,255,150,0.05);
   border:1px solid rgba(0,255,150,0.2);
   border-radius:12px;
   padding:18px;
   margin-bottom:20px;
 }
-
-.section h3{
-  color:#00ff9c;
-  margin-bottom:10px;
-}
-
+.section h3{color:#00ff9c; margin-bottom:10px;}
 label{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:10px;
 }
-
 select, input[type=number]{
   padding:7px;
   border-radius:6px;
@@ -71,31 +91,38 @@ select, input[type=number]{
   font-size:16px;
   color:#000;
 }
-
 .total{
   text-align:center;
   font-size:24px;
   margin-top:25px;
   color:#00ff9c;
 }
-
 footer{
-  text-align:center;
-  padding:15px;
-  border-top:1px solid #00ff9c;
-  margin-top:30px;
-  font-size:14px;
+  background:#000;
   color:#00ff9c;
+  text-align:center;
+  padding:20px;
+  border-top:2px solid #00ff9c;
 }
+footer a{color:#00ff9c; text-decoration:none;}
+footer a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
 
 <header>
-  <a href="index.html">Accueil</a> |
-  <a href="domotique.html">Domotique</a> |
-  <a href="securite.html">Sécurité</a> |
-  <a href="config.html">Configuration</a>
+  <h1>🏠MaisonConnecté</h1>
+  <div class="burger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <nav id="menu">
+    <a href="index.html">Accueil</a>
+    <a href="domotique.html">Domotique</a>
+    <a href="securite.html">Sécurité</a>
+    <a href="config.html">Configuration</a>
+  </nav>
 </header>
 
 <div class="container">
@@ -103,30 +130,31 @@ footer{
   <h2>⚙️ Configuration personnalisée</h2>
 
   <div class="section">
-    <h3>🪟 Modules volets</h3>
+    <h3>🪟 Modules Volets</h3>
     <label>
       Nombre de modules
       <input type="number" id="volets" min="0" value="0" onchange="calcul()">
     </label>
-    <small>Prix dégressif appliqué automatiquement</small>
+    <small>Prix dégressif : 1 module 89€, 2-3 modules 79€, 4-6 modules 69€, 7+ modules 59€</small>
   </div>
 
   <div class="section">
-    <h3>🔐 Sécurité</h3>
+    <h3>🔐 Pack Sécurité</h3>
     <label>
-      Pack sécurité
+      Choisir pack
       <select id="securite" onchange="calcul()">
         <option value="0">Aucun</option>
-        <option value="149">Pack Mini – 149€</option>
-        <option value="249">Pack S – 249€</option>
-        <option value="349">Pack M – 349€</option>
-        <option value="449">Pack L – 449€</option>
+        <option value="149">Mini – 149€</option>
+        <option value="249">S – 249€</option>
+        <option value="349">M – 349€</option>
+        <option value="449">L – 449€</option>
       </select>
     </label>
+    <small>Option détecteurs supplémentaires inclus dans le pack (0-12)</small>
   </div>
 
   <div class="section">
-    <h3>📷 Caméras</h3>
+    <h3>📷 Caméras fixes intérieures</h3>
     <label>
       Nombre de caméras
       <input type="number" id="cameras" min="0" value="0" onchange="calcul()">
@@ -134,7 +162,7 @@ footer{
   </div>
 
   <div class="section">
-    <h3>📱 Option tablette murale</h3>
+    <h3>📱 Tablette murale (option)</h3>
     <label>
       Ajouter tablette (+129€)
       <select id="tablette" onchange="calcul()">
@@ -151,10 +179,14 @@ footer{
 </div>
 
 <footer>
-© 2026 🏠 MaisonConnecté
+  &copy; 2026 🏠MaisonConnecté | <a href="contact.html">Contactez-nous</a>
 </footer>
 
 <script>
+function toggleMenu(){
+  document.getElementById('menu').classList.toggle('active');
+}
+
 function prixVolets(q){
     if(q <= 1) return q * 89;
     if(q <= 3) return q * 79;
