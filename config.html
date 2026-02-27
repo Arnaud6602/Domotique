@@ -3,75 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏠MaisonConnecté - Configuration</title>
+<title>Configuration – Devis Domotique & Sécurité</title>
+
 <style>
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family: Arial, sans-serif; background:#000; color:#fff; line-height:1.5;}
-header{display:flex; justify-content:space-between; align-items:center; background:#000; padding:15px 20px; position:sticky; top:0; z-index:1000; border-bottom:2px solid #00ff9c;}
-header h1{font-size:2.2em; color:#fff; text-align:center; width:100%;}
-.burger{display:flex; flex-direction:column; justify-content:space-between; width:25px; height:18px; cursor:pointer;}
-.burger div{height:3px; background:#00ff9c; border-radius:2px;}
-nav{display:none; flex-direction:column; background:#000; position:absolute; top:60px; right:20px; border-radius:8px; overflow:hidden; width:180px;}
-nav a{color:#00ff9c; padding:12px 15px; text-decoration:none; border-bottom:1px solid rgba(0,255,150,0.2);}
-nav a:last-child{border-bottom:none;}
-nav a:hover{background:#0f2650;}
-nav.active{display:flex;}
-.container{max-width:900px; margin:auto; padding:20px;}
-h2{text-align:center; margin-bottom:30px; color:#00ff9c;}
-form{display:flex; flex-direction:column; gap:20px; margin-bottom:30px;}
-label{font-size:1.1em; color:#fff;}
-input, select{padding:10px; border-radius:8px; border:none; font-size:1em;}
-button{padding:15px; background:#00ff9c; color:#000; border:none; border-radius:10px; cursor:pointer; font-weight:bold;}
-button:hover{transform:scale(1.05);}
-.result{margin-top:30px; font-size:1.2em; color:#00ff9c;}
+body {
+    font-family: Arial, sans-serif;
+    background: #0e1a14;
+    color: white;
+    margin: 0;
+}
+
+header {
+    background: #000;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+section {
+    background: #12261c;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 0;
+    color: #00ff9c;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 70px;
+    padding: 5px;
+}
+
+.total {
+    background: black;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    border: 2px solid #00ff9c;
+}
 </style>
 </head>
+
 <body>
 
-<header>
-  <h1>🏠MaisonConnecté</h1>
-  <div class="burger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
-  <nav id="menu">
-    <a href="index.html">Accueil</a>
-    <a href="domotique.html">Domotique</a>
-    <a href="securite.html">Sécurité</a>
-    <a href="config.html">Configuration</a>
-  </nav>
-</header>
+<header>Configuration & Devis instantané</header>
 
-<div class="container">
-  <h2>⚙️ Configuration de votre installation</h2>
-  <form id="configForm">
-    <label>Nombre de volets :</label>
-    <input type="number" id="volets" value="1" min="0">
-    <label>Nombre de capteurs portes/fenêtres (0-12) :</label>
-    <input type="number" id="capteurs" value="4" min="0" max="12">
-    <label>Nombre de caméras fixes intérieures :</label>
-    <input type="number" id="cameras" value="1" min="0">
-    <button type="button" onclick="calculerPrix()">💰 Calculer le prix</button>
-  </form>
-  <div class="result" id="result"></div>
+<main>
+
+<section>
+<h2>Domotique – Volets roulants</h2>
+
+<div class="row">
+<label>Nombre de modules volet :</label>
+<input type="number" id="volets" min="0" value="0" oninput="calcul()">
 </div>
 
-<footer>
-  &copy; 2026 🏠MaisonConnecté | <a href="contact.html">Contactez-nous</a>
-</footer>
+<p>Prix unitaire dégressif appliqué automatiquement.</p>
+</section>
+
+<section>
+<h2>Sécurité – Alarme & Caméras</h2>
+
+<div class="row">
+<label>Pack mini sécurité (149€) :</label>
+<input type="number" id="packSecu" min="0" value="0" oninput="calcul()">
+</div>
+
+<div class="row">
+<label>Caméras (79€ / unité) :</label>
+<input type="number" id="cameras" min="0" value="0" oninput="calcul()">
+</div>
+
+<div class="row">
+<label>Sirènes (39€) :</label>
+<input type="number" id="sirene" min="0" value="0" oninput="calcul()">
+</div>
+
+<div class="row">
+<label>Détecteurs ouverture (29€) :</label>
+<input type="number" id="ouverture" min="0" value="0" oninput="calcul()">
+</div>
+
+<div class="row">
+<label>Détecteurs mouvement (39€) :</label>
+<input type="number" id="mouvement" min="0" value="0" oninput="calcul()">
+</div>
+
+</section>
+
+<section>
+<h2>Options</h2>
+
+<div class="row">
+<label>Tablette murale (129€) :</label>
+<input type="number" id="tablette" min="0" value="0" oninput="calcul()">
+</div>
+
+</section>
+
+<div class="total">
+Total : <span id="total">0</span> €
+</div>
+
+</main>
 
 <script>
-function toggleMenu(){document.getElementById('menu').classList.toggle('active');}
-function calculerPrix(){
-  const volets = parseInt(document.getElementById('volets').value)||0;
-  const capteurs = parseInt(document.getElementById('capteurs').value)||0;
-  const cameras = parseInt(document.getElementById('cameras').value)||0;
+function prixVolets(n) {
+    if (n <= 0) return 0;
+    if (n == 1) return 89;
+    if (n == 2) return 170;
+    if (n == 3) return 249;
+    if (n == 4) return 320;
+    if (n == 5) return 390;
+    return 390 + (n - 5) * 78;
+}
 
-  const prixVolet = 49; // par module
-  const prixCapteur = 15; // par capteur
-  const prixCamera = 79; // par caméra
-  const prixBase = 99; // installation + passerelle
+function calcul() {
+    let volets = parseInt(document.getElementById("volets").value) || 0;
+    let packSecu = parseInt(document.getElementById("packSecu").value) || 0;
+    let cameras = parseInt(document.getElementById("cameras").value) || 0;
+    let sirene = parseInt(document.getElementById("sirene").value) || 0;
+    let ouverture = parseInt(document.getElementById("ouverture").value) || 0;
+    let mouvement = parseInt(document.getElementById("mouvement").value) || 0;
+    let tablette = parseInt(document.getElementById("tablette").value) || 0;
 
-  const total = (volets*prixVolet) + (capteurs*prixCapteur) + (cameras*prixCamera) + prixBase;
+    let total =
+        prixVolets(volets) +
+        packSecu * 149 +
+        cameras * 79 +
+        sirene * 39 +
+        ouverture * 29 +
+        mouvement * 39 +
+        tablette * 129;
 
-  document.getElementById('result').innerHTML = `💰 Prix estimé : ${total} €`;
+    document.getElementById("total").innerText = total;
 }
 </script>
 
