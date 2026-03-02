@@ -3,103 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏠MaisonConnecté - Domotique</title>
+<title>🏠MaisonConnecté - Domotique Volets</title>
 <style>
-/* Reset */
-* {margin:0; padding:0; box-sizing:border-box;}
-body {font-family: Arial, sans-serif; background:#000; color:#fff; line-height:1.5;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial,sans-serif;background:#000;color:#fff;line-height:1.5}
 
-/* Header identique à celui fourni */
 header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#000;
-  padding:15px 20px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  border-bottom:2px solid #00ff9c;
+  display:flex;justify-content:space-between;align-items:center;
+  background:#000;padding:15px 20px;position:sticky;top:0;
+  border-bottom:2px solid #00ff9c;z-index:1000
 }
-header h1{
-  font-size:2.2em;
-  color:#fff;
-  text-align:center;
-  width:100%;
+header h1{font-size:2.2em;color:#fff;text-align:center;width:100%}
+.burger{display:flex;flex-direction:column;width:25px;height:18px;cursor:pointer;justify-content:space-between}
+.burger div{height:3px;background:#00ff9c;border-radius:2px}
+
+nav{display:none;flex-direction:column;background:#000;position:absolute;top:60px;right:20px;
+border-radius:8px;width:180px;overflow:hidden}
+nav a{color:#00ff9c;padding:12px 15px;text-decoration:none;border-bottom:1px solid rgba(0,255,150,.2)}
+nav a:hover{background:#0f2650}
+nav.active{display:flex}
+
+.container{max-width:1200px;margin:auto;padding:30px 20px}
+h2{text-align:center;margin-bottom:20px;color:#00ff9c}
+p{text-align:center;color:#ccc;margin-bottom:15px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:30px}
+.card{
+  background:rgba(0,255,150,.05);
+  border:1px solid rgba(0,255,150,.2);
+  border-radius:15px;
+  padding:25px;
+  transition:.3s
 }
-.burger{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  width:25px;
-  height:18px;
-  cursor:pointer;
-}
-.burger div{
-  height:3px;
-  background:#00ff9c;
-  border-radius:2px;
+.card:hover{transform:translateY(-6px);border-color:#00ff9c}
+.card h3{margin-bottom:15px;color:#00ff9c}
+.price{font-size:2em;color:#00ff9c;margin:10px 0}
+
+ul{padding-left:18px;line-height:1.6}
+
+.info{
+  margin-top:40px;
+  background:rgba(0,255,150,.05);
+  border:1px solid rgba(0,255,150,.2);
+  border-radius:15px;
+  padding:25px
 }
 
-/* Menu déroulant */
-nav{
-  display:none;
-  flex-direction:column;
-  background:#000;
-  position:absolute;
-  top:60px;
-  right:20px;
-  border-radius:8px;
-  overflow:hidden;
-  width:180px;
-}
-nav a{
-  color:#00ff9c;
-  padding:12px 15px;
-  text-decoration:none;
-  border-bottom:1px solid rgba(0,255,150,0.2);
-}
-nav a:last-child{border-bottom:none;}
-nav a:hover{background:#0f2650;}
-nav.active{display:flex;}
-
-/* Contenu */
-.container{max-width:1200px; margin:auto; padding:20px;}
-h2{text-align:center; margin-bottom:30px; color:#00ff9c;}
-.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:25px;}
-.card{background: rgba(0,255,150,0.05); border-radius:15px; padding:25px; border:1px solid rgba(0,255,150,0.2); transition:0.3s;}
-.card:hover{transform:translateY(-6px); border-color:#00ff9c;}
-.card h3{margin-bottom:15px; color:#00ff9c;}
-.price{font-size:2em; color:#00ff9c; margin:10px 0;}
-ul {padding-left:18px; line-height:1.6;}
-.cta{text-align:center; margin:40px 0;}
+.cta{text-align:center;margin:40px 0}
 .cta a{
-  background: linear-gradient(90deg, #00ff9c, #00c878);
+  background:linear-gradient(90deg,#00ff9c,#00c878);
   color:#000;
   padding:16px 45px;
   border-radius:40px;
   text-decoration:none;
   font-weight:bold;
   font-size:1.1em;
-  transition:0.3s;
+  transition:.3s
 }
-.cta a:hover{transform: scale(1.05); box-shadow: 0 0 25px rgba(0,255,150,0.6);}
+.cta a:hover{transform:scale(1.05);box-shadow:0 0 25px rgba(0,255,150,.6)}
 
-/* Footer */
-footer{background:#000; color:#00ff9c; text-align:center; padding:20px; border-top:2px solid #00ff9c;}
-footer a{color:#00ff9c; text-decoration:none;}
-footer a:hover{text-decoration:underline;}
+footer{text-align:center;padding:20px;border-top:2px solid #00ff9c;color:#00ff9c}
 </style>
 </head>
 <body>
 
 <header>
   <h1>🏠MaisonConnecté</h1>
-  <div class="burger" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+  <div class="burger" onclick="toggleMenu()"><div></div><div></div><div></div></div>
   <nav id="menu">
     <a href="index.html">Accueil</a>
     <a href="domotique.html">Domotique</a>
@@ -109,66 +79,82 @@ footer a:hover{text-decoration:underline;}
 </header>
 
 <div class="container">
-  <h2>💡 Packs Domotique Volets</h2>
-  <div class="grid">
 
-    <div class="card">
-      <h3>Pack S</h3>
-      <div class="price">89 €</div>
-      <ul>
-        <li>1 module Wi-Fi pour volet inclus</li>
-        <li>Option jusqu’à 2 modules (supplément)</li>
-        <li>Scènes Normal / Vacances / Nuit incluses</li>
-        <li>Automatisation lever/coucher du soleil</li>
-      </ul>
-    </div>
+<h2>💡 Domotique Volets – Solution Clé en Main</h2>
+<p>Automatisation intelligente de vos volets roulants motorisés, sans travaux lourds, sans abonnement.</p>
+<p><strong>Installation propre – Configuration complète – Évolutif</strong></p>
 
-    <div class="card">
-      <h3>Pack M</h3>
-      <div class="price">189 €</div>
-      <ul>
-        <li>3 modules Wi-Fi pour volets inclus</li>
-        <li>Option jusqu’à 4 modules (supplément)</li>
-        <li>Scènes Normal / Vacances / Nuit incluses</li>
-        <li>Automatisation complète et simple</li>
-      </ul>
-    </div>
+<div class="grid">
 
-    <div class="card">
-      <h3>Pack L</h3>
-      <div class="price">329 €</div>
-      <ul>
-        <li>5 à 8 modules Wi-Fi pour volets</li>
-        <li>Scènes Normal / Vacances / Nuit incluses</li>
-        <li>Automatisation complète maison</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Pack XL</h3>
-      <div class="price">449 €</div>
-      <ul>
-        <li>9 à 12 modules Wi-Fi pour volets</li>
-        <li>Scènes Normal / Vacances / Nuit incluses</li>
-        <li>Automatisation complète + supervision</li>
-      </ul>
-    </div>
-
+  <div class="card">
+    <h3>Pack S</h3>
+    <div class="price">89 €</div>
+    <ul>
+      <li>1 volet connecté installé</li>
+      <li>Interrupteur connecté mural ou module discret selon faisabilité</li>
+      <li>Automatisations complètes</li>
+      <li>Commande smartphone & vocale</li>
+    </ul>
   </div>
 
-  <div class="cta">
-    <a href="config.html">⚙️ Configurer ma domotique</a>
+  <div class="card">
+    <h3>Pack M</h3>
+    <div class="price">189 €</div>
+    <ul>
+      <li>3 volets connectés</li>
+      <li>Automatisations avancées</li>
+      <li>Scénarios intelligents</li>
+      <li>Configuration complète incluse</li>
+    </ul>
   </div>
+
+  <div class="card">
+    <h3>Pack L</h3>
+    <div class="price">329 €</div>
+    <ul>
+      <li>5 à 8 volets connectés</li>
+      <li>Gestion centralisée complète</li>
+      <li>Automatisations avancées</li>
+      <li>Interface optimisée</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Pack XL</h3>
+    <div class="price">449 €</div>
+    <ul>
+      <li>9 à 12 volets connectés</li>
+      <li>Automatisation globale maison</li>
+      <li>Scénarios personnalisés</li>
+      <li>Optimisation complète</li>
+    </ul>
+  </div>
+
 </div>
 
-<footer>
-  &copy; 2026 🏠MaisonConnecté | <a href="contact.html">Contactez-nous</a>
-</footer>
+<div class="info">
+<h3 style="color:#00ff9c;text-align:center;margin-bottom:15px;">⚙️ Fonctionnement & Conditions</h3>
+<ul>
+  <li>✔ Installation sur volets roulants motorisés uniquement</li>
+  <li>✔ WiFi 2.4 GHz obligatoire</li>
+  <li>✔ Installation sous réserve de faisabilité technique</li>
+  <li>✔ Fourniture du matériel incluse</li>
+  <li>✔ Automatisations créées et configurées</li>
+  <li>✔ Aucun abonnement</li>
+  <li>✔ Solution évolutive</li>
+</ul>
+</div>
+
+<div class="cta">
+  <a href="config.html">⚙️ Configurer mon installation</a>
+</div>
+
+</div>
+
+<footer>&copy; 2026 🏠MaisonConnecté</footer>
 
 <script>
-function toggleMenu(){
-  document.getElementById('menu').classList.toggle('active');
-}
+function toggleMenu(){document.getElementById('menu').classList.toggle('active');}
 </script>
 
 </body>
